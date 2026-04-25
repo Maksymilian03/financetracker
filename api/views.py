@@ -6,14 +6,16 @@ from .models import Category, Transaction, Investment
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
-    queryset = Category.objects.all()
+    def get_queryset(self):
+        return Category.objects.filter(user=self.request.user)
     serializer_class = CategorySerializer
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
 class TransactionViewSet(viewsets.ModelViewSet):
-    queryset = Transaction.objects.all()
+    def get_queryset(self):
+        return Transaction.objects.filter(user=self.request.user)
     serializer_class = TransactionSerializer
 
     def perform_create(self, serializer):
@@ -21,7 +23,8 @@ class TransactionViewSet(viewsets.ModelViewSet):
 
 
 class InvestmentViewSet(viewsets.ModelViewSet):
-    queryset = Investment.objects.all()
+    def get_queryset(self):
+        return Investment.objects.filter(user=self.request.user)
     serializer_class = InvestmentSerializer
 
     def perform_create(self, serializer):
