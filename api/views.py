@@ -1,7 +1,8 @@
 from django.shortcuts import render
 
-from rest_framework import viewsets
-from .serializers import CategorySerializer, TransactionSerializer, InvestmentSerializer
+from rest_framework import viewsets, generics
+from rest_framework.permissions import AllowAny
+from .serializers import CategorySerializer, TransactionSerializer, InvestmentSerializer, RegisterSerializer
 from .models import Category, Transaction, Investment
 
 
@@ -29,6 +30,11 @@ class InvestmentViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+class RegisterView(generics.CreateAPIView):
+    serializer_class = RegisterSerializer
+    permission_classes = [AllowAny]
 
 
 
