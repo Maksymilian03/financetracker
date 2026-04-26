@@ -13,10 +13,21 @@ class TransactionSerializer(serializers.ModelSerializer):
         model = Transaction
         fields = ['id', 'type', 'category', 'amount', 'date'] 
 
+    def validate_amount(self, value):
+        if value <= 0:
+            raise serializers.ValidationError('Kwota musi być większa od zera')
+        return value
+
 class InvestmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Investment
         fields = ['id', 'type', 'amount', 'date'] 
+    
+    def validate_amount(self, value):
+        if value <= 0:
+            raise serializers.ValidationError('Kwota musi być większa od zera')
+        return value
+
 
 
 class RegisterSerializer(serializers.ModelSerializer):
