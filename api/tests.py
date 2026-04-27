@@ -1,9 +1,7 @@
 from django.test import TestCase
 from rest_framework.test import APITestCase
 from rest_framework import status
-from api.models import Category, Transaction
-from api.serializers import CategorySerializer
-from django.urls import reverse
+from api.models import Category
 from django.contrib.auth.models import User
 
 
