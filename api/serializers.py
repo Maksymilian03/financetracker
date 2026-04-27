@@ -9,9 +9,16 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class TransactionSerializer(serializers.ModelSerializer):
+    category = CategorySerializer(read_only=True)
+    category_id = serializers.PrimaryKeyRelatedField(
+        queryset=Category.objects.all(),
+        source='category',
+        write_only=True
+        )
     class Meta:
+     
         model = Transaction
-        fields = ['id', 'type', 'category', 'amount', 'date'] 
+        fields = ['id', 'type', 'category', 'category_id', 'amount', 'date'] 
 
     def validate_amount(self, value):
         if value <= 0:
