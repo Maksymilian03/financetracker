@@ -10,6 +10,8 @@ Aplikacja do zarządzania budżetem domowym pomagająca prowadzić miesięczny b
 - Zarządzanie kategoriami wydatków
 - Dodawanie transakcji (wydatki/przychody)
 - Śledzenie inwestycji (akcje, ETF, obligacje)
+- Testy jednostkowe
+
 
 ## Instalacja
 ```bash
@@ -35,3 +37,8 @@ python manage.py runserver
 | GET/POST | /api/category/ | Kategorie |
 | GET/POST | /api/transaction/ | Transakcje |
 | GET/POST | /api/investment/ | Inwestycje |
+
+## Uruchamianie testów 
+```bash
+python manage.py test
+```
