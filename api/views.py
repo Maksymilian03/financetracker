@@ -4,6 +4,7 @@ from rest_framework import viewsets, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
+from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Sum
 from .serializers import CategorySerializer, TransactionSerializer, InvestmentSerializer, RegisterSerializer
 from .models import Category, Transaction, Investment
@@ -18,6 +19,9 @@ class CategoryViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
 class TransactionViewSet(viewsets.ModelViewSet):
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['date', 'type', 'amount']
+
     def get_queryset(self):
         return Transaction.objects.filter(user=self.request.user)
     serializer_class = TransactionSerializer
