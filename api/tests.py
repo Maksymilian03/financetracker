@@ -64,6 +64,7 @@ class TransactionTests(APITestCase):
         self.assertEqual(respons.status_code, status.HTTP_200_OK)
         self.assertEqual(respons.data['count'], 2)
 
+    
 
         
         
